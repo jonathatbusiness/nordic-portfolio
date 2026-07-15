@@ -15,7 +15,7 @@ export function Hero() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-[52%_38%] sm:object-[52%_34%] lg:object-[52%_30%]"
       />
 
       {/* Soft global overlay */}
@@ -33,7 +33,10 @@ export function Hero() {
             Land of Vikings
           </p>
 
-          <h1 className="text-balance text-6xl font-black uppercase tracking-tight sm:text-7xl lg:text-9xl">
+          <h1
+            className="digital-glitch text-balance text-6xl font-black uppercase tracking-tight sm:text-7xl lg:text-9xl"
+            data-text="Norway"
+          >
             Norway
           </h1>
 
@@ -41,8 +44,9 @@ export function Hero() {
             A land of breathtaking nature, rich history and strong traditions.
           </p>
 
-          <p className="mt-5 text-sm text-slate-300">
-            A school portfolio by Mateus Augusto Caetani
+          <p className="mt-5 max-w-xl text-sm leading-6 text-slate-300">
+            An English class project from 3rd Year 1, created by Mateus A.
+            Caetani in 2026.
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">

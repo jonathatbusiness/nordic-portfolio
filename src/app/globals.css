@@ -18,6 +18,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  padding-bottom: 72px;
 }
 
 h1,
@@ -37,4 +38,129 @@ a {
 ::selection {
   background: #b91c1c;
   color: #ffffff;
+}
+
+.digital-glitch {
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 0 34px rgba(185, 28, 28, 0.22);
+  animation: digital-glitch-flicker 5.8s infinite steps(1, end);
+}
+
+.digital-glitch::before,
+.digital-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.digital-glitch::before {
+  color: #ef4444;
+  transform: translateX(-2px);
+  clip-path: inset(8% 0 66% 0);
+  animation: digital-glitch-red 4.2s infinite steps(1, end);
+}
+
+.digital-glitch::after {
+  color: #38bdf8;
+  transform: translateX(2px);
+  clip-path: inset(58% 0 12% 0);
+  animation: digital-glitch-blue 3.6s infinite steps(1, end);
+}
+
+@keyframes digital-glitch-flicker {
+  0%,
+  88%,
+  100% {
+    filter: none;
+    transform: translate(0);
+  }
+
+  89% {
+    filter: contrast(1.35) brightness(1.08);
+    transform: translate(-1px, 0);
+  }
+
+  90% {
+    filter: contrast(1.1);
+    transform: translate(1px, -1px);
+  }
+
+  91% {
+    filter: none;
+    transform: translate(0);
+  }
+}
+
+@keyframes digital-glitch-red {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(8% 0 66% 0);
+  }
+
+  73% {
+    opacity: 0.8;
+    transform: translate(-5px, -1px);
+    clip-path: inset(13% 0 60% 0);
+  }
+
+  74% {
+    opacity: 0.35;
+    transform: translate(3px, 1px);
+    clip-path: inset(44% 0 38% 0);
+  }
+
+  75% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+@keyframes digital-glitch-blue {
+  0%,
+  58%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(58% 0 12% 0);
+  }
+
+  59% {
+    opacity: 0.65;
+    transform: translate(5px, 1px);
+    clip-path: inset(64% 0 18% 0);
+  }
+
+  60% {
+    opacity: 0.45;
+    transform: translate(-3px, -1px);
+    clip-path: inset(22% 0 54% 0);
+  }
+
+  61% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digital-glitch,
+  .digital-glitch::before,
+  .digital-glitch::after {
+    animation: none;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
 }

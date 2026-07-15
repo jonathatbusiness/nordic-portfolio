@@ -22,8 +22,14 @@ export function Header() {
             className="flex items-center gap-3 font-bold tracking-wide"
             onClick={closeMenu}
           >
-            <span className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-red-700 text-sm">
-              NO
+            <span
+              className="relative flex size-10 overflow-hidden rounded-full border border-white/20 bg-red-700 shadow-sm"
+              aria-label="Norwegian flag"
+            >
+              <span className="absolute inset-y-0 left-[30%] w-[24%] bg-white" />
+              <span className="absolute inset-x-0 top-[38%] h-[24%] bg-white" />
+              <span className="absolute inset-y-0 left-[36%] w-[12%] bg-blue-950" />
+              <span className="absolute inset-x-0 top-[44%] h-[12%] bg-blue-950" />
             </span>
 
             <span className="text-lg uppercase">Norway</span>

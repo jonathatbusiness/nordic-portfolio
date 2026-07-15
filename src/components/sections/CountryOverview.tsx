@@ -1,17 +1,12 @@
-import {
-  Building2,
-  CloudSnow,
-  Compass,
-  Map,
-  MapPinned,
-  Ruler,
-} from "lucide-react";
+import { Building2, CloudSnow, Compass, MapPinned, Ruler } from "lucide-react";
 
 import { countryOverview } from "@/data/country";
 import { Container } from "@/components/ui/Container";
 import { InfoCard } from "@/components/ui/InfoCard";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { CountryStat } from "@/types/portfolio";
+import Image from "next/image";
 
 const statIcons = {
   capital: Building2,
@@ -34,52 +29,53 @@ export function CountryOverview() {
         />
 
         <div className="mt-14 grid items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative min-h-[28rem] overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.45),transparent_38%),radial-gradient(circle_at_bottom_left,rgba(30,64,175,0.42),transparent_42%)]" />
+          <Reveal className="h-full" variant="fade-right">
+            <div className="relative flex h-full min-h-[34rem] flex-col overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl">
+            <div className="relative min-h-[26rem] flex-1 overflow-hidden">
+              <Image
+                src="/images/country/norway-map.webp"
+                alt="Map of Norway"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="object-cover object-center"
+              />
 
-            <div className="absolute inset-0 opacity-15 [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:40px_40px]" />
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/10" />
 
-            <div className="relative flex h-full min-h-[28rem] flex-col justify-between p-7 sm:p-10">
-              <div className="flex items-center justify-between gap-5">
-                <div className="flex size-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm">
+              <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-5 p-6 sm:p-8">
+                <div className="flex size-14 items-center justify-center rounded-2xl border border-slate-950/15 bg-white/80 text-slate-950 shadow-lg backdrop-blur-md">
                   <MapPinned size={27} aria-hidden="true" />
                 </div>
 
-                <span className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-200 backdrop-blur-sm">
+                <span className="rounded-full border border-slate-950/15 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-900 shadow-lg backdrop-blur-md">
                   Northern Europe
                 </span>
               </div>
+            </div>
 
-              <div className="my-12 flex flex-1 items-center justify-center">
-                <div className="relative flex aspect-square w-full max-w-72 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                  <div className="absolute inset-5 rounded-full border border-dashed border-white/15" />
+            <div className="relative bg-slate-950 px-7 py-5 sm:px-10 sm:py-6">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.24),transparent_44%),radial-gradient(circle_at_bottom_left,rgba(30,64,175,0.26),transparent_45%)]" />
 
-                  <Map
-                    size={108}
-                    strokeWidth={0.8}
-                    className="text-white/80"
-                    aria-hidden="true"
-                  />
-                </div>
-              </div>
-
-              <div>
+              <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-red-400">
                   Norway
                 </p>
 
-                <p className="mt-3 max-w-lg text-lg leading-7 text-slate-200">
+                <p className="mt-2 max-w-lg text-lg leading-7 text-slate-200">
                   Located in the western part of the Scandinavian Peninsula,
                   extending from southern Scandinavia into the Arctic Circle.
                 </p>
               </div>
             </div>
-          </div>
-
-          <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-10">
-            <div className="flex size-13 items-center justify-center rounded-2xl bg-red-700 text-white">
-              <MapPinned size={24} aria-hidden="true" />
             </div>
+          </Reveal>
+
+          <Reveal className="h-full" variant="fade-left" delay={80}>
+            <article className="h-full rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-10">
+              <div className="flex size-13 items-center justify-center rounded-2xl bg-red-700 text-white">
+                <MapPinned size={24} aria-hidden="true" />
+              </div>
 
             <h3 className="mt-7 text-3xl font-bold tracking-tight text-slate-950">
               {countryOverview.location.title}
@@ -106,7 +102,8 @@ export function CountryOverview() {
                 </span>
               ))}
             </div>
-          </article>
+            </article>
+          </Reveal>
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
@@ -125,8 +122,9 @@ export function CountryOverview() {
           })}
         </div>
 
-        <article className="relative mt-8 overflow-hidden rounded-[2rem] bg-red-700 text-white shadow-xl">
-          <div className="absolute -right-20 -top-20 size-72 rounded-full border-[3rem] border-white/10" />
+        <Reveal variant="fade-up">
+          <article className="relative mt-8 overflow-hidden rounded-[2rem] bg-red-700 text-white shadow-xl">
+            <div className="absolute -right-20 -top-20 size-72 rounded-full border-[3rem] border-white/10" />
 
           <div className="absolute bottom-0 right-0 h-full w-1/2 bg-gradient-to-l from-blue-950/45 to-transparent" />
 
@@ -163,7 +161,8 @@ export function CountryOverview() {
               </div>
             </div>
           </div>
-        </article>
+          </article>
+        </Reveal>
       </Container>
     </section>
   );

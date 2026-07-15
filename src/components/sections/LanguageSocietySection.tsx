@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accessibility,
   Banknote,
@@ -16,11 +18,12 @@ import {
 } from "lucide-react";
 import { SpeakButton } from "@/components/ui/SpeakButton";
 
-import { languageSocietySection } from "@/data/languageSociety";
+import { languageSocietySection as languageSocietySectionData } from "@/data/languageSociety";
 import { Container } from "@/components/ui/Container";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { SocietyStat, SocietyTopic } from "@/types/portfolio";
 
 const statIcons = {
@@ -36,6 +39,9 @@ const topicIcons = {
 } satisfies Record<SocietyTopic["icon"], typeof CircleAlert>;
 
 export function LanguageSocietySection() {
+  const { t, translate } = useI18n();
+  const languageSocietySection = translate(languageSocietySectionData);
+
   return (
     <section
       id="language-society"
@@ -75,7 +81,7 @@ export function LanguageSocietySection() {
 
               <div className="mt-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Official languages
+                  {t("Official languages")}
                 </p>
 
                 <div className="mt-3 flex flex-wrap gap-3">
@@ -106,12 +112,12 @@ export function LanguageSocietySection() {
                   </div>
 
                   <span className="rounded-full border border-white/10 bg-slate-950/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
-                    Country name
+                    {t("Country name")}
                   </span>
                 </div>
 
                 <p className="mt-10 text-sm font-semibold uppercase tracking-[0.22em] text-red-400">
-                  Norway in Norwegian
+                  {t("Norway in Norwegian")}
                 </p>
 
                 <p className="mt-3 text-7xl font-black tracking-tight sm:text-8xl">
@@ -120,8 +126,10 @@ export function LanguageSocietySection() {
 
                 <SpeakButton
                   text={languageSocietySection.language.countryName.norwegian}
-                  label="Listen to the pronunciation of Norge"
-                  displayText={`Pronunciation: ${languageSocietySection.language.countryName.pronunciation}`}
+                  label={`${t("Listen to the pronunciation of")} Norge`}
+                  displayText={t(
+                    `Pronunciation: ${languageSocietySection.language.countryName.pronunciation}`,
+                  )}
                   lang="nb-NO"
                   rate={0.78}
                   className="mt-6 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 hover:border-red-400/50 hover:bg-white/10 hover:text-white"
@@ -167,7 +175,7 @@ export function LanguageSocietySection() {
 
                 <SpeakButton
                   text={expression.norwegian}
-                  label={`Listen to ${expression.norwegian}`}
+                  label={`${t("Listen to")} ${expression.norwegian}`}
                   displayText={expression.pronunciation}
                   lang="nb-NO"
                   rate={0.8}
@@ -227,11 +235,11 @@ export function LanguageSocietySection() {
               </div>
 
             <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-red-400">
-              Principal Economic Activities
+                {t("Principal Economic Activities")}
             </p>
 
             <h3 className="mt-3 text-3xl font-bold tracking-tight">
-              Major Norwegian Industries
+                {t("Major Norwegian Industries")}
             </h3>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -265,17 +273,17 @@ export function LanguageSocietySection() {
               </div>
 
               <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-red-700">
-                Technology & Companies
+                {t("Technology & Companies")}
               </p>
 
               <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-                Norwegian Companies
+                {t("Norwegian Companies")}
               </h3>
 
               <p className="mt-6 leading-7 text-slate-600">
-                Several Norwegian companies operate internationally in energy,
-                telecommunications, finance, engineering and sustainable
-                technology.
+                {t(
+                  "Several Norwegian companies operate internationally in energy, telecommunications, finance, engineering and sustainable technology.",
+                )}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">

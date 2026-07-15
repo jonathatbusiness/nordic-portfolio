@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   ArrowUpRight,
@@ -8,9 +10,11 @@ import {
   SunMedium,
 } from "lucide-react";
 
-import { curiositySection } from "@/data/curiosity";
+import { curiositySection as curiositySectionData } from "@/data/curiosity";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { CuriosityFact } from "@/types/portfolio";
 
 const factIcons = {
@@ -20,6 +24,9 @@ const factIcons = {
 } satisfies Record<CuriosityFact["icon"], typeof SunMedium>;
 
 export function CuriositySection() {
+  const { t, translate } = useI18n();
+  const curiositySection = translate(curiositySectionData);
+
   return (
     <section
       id="curiosity"
@@ -32,7 +39,8 @@ export function CuriositySection() {
           description={curiositySection.description}
         />
 
-        <article className="mt-14 grid overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
+        <Reveal variant="fade-up">
+          <article className="mt-14 grid overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative min-h-[32rem] overflow-hidden">
             <Image
               src={curiositySection.featured.image}
@@ -46,15 +54,15 @@ export function CuriositySection() {
 
             <div className="absolute left-6 top-6 flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 text-sm font-semibold backdrop-blur-md sm:left-8 sm:top-8">
               <Sparkles size={17} className="text-red-400" aria-hidden="true" />
-              Natural Phenomenon
+              {t("Natural Phenomenon")}
             </div>
 
             <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:hidden">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-400">
-                Midnight Sun
+                {t("Midnight Sun")}
               </p>
 
-              <p className="mt-2 text-3xl font-bold">Northern Norway</p>
+              <p className="mt-2 text-3xl font-bold">{t("Northern Norway")}</p>
             </div>
           </div>
 
@@ -95,18 +103,22 @@ export function CuriositySection() {
               </div>
             </div>
           </div>
-        </article>
+          </article>
+        </Reveal>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {curiositySection.facts.map((fact) => {
+          {curiositySection.facts.map((fact, index) => {
             const Icon = factIcons[fact.icon];
 
             return (
-              <article
+              <Reveal
                 key={fact.id}
-                className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-red-200 hover:bg-white hover:shadow-xl sm:p-8"
+                className="h-full"
+                variant={index === 1 ? "scale" : "fade-up"}
+                delay={index * 70}
               >
-                <div className="absolute -right-10 -top-10 size-36 rounded-full bg-red-50 transition duration-300 group-hover:scale-125" />
+                <article className="group relative h-full overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-red-200 hover:bg-white hover:shadow-xl sm:p-8">
+                  <div className="absolute -right-10 -top-10 size-36 rounded-full bg-red-50 transition duration-300 group-hover:scale-125" />
 
                 <div className="relative">
                   <div className="flex items-start justify-between gap-5">
@@ -133,7 +145,8 @@ export function CuriositySection() {
                     {fact.description}
                   </p>
                 </div>
-              </article>
+                </article>
+              </Reveal>
             );
           })}
         </div>

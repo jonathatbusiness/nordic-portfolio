@@ -1,6 +1,9 @@
+"use client";
+
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { Reveal } from "@/components/ui/Reveal";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type InfoCardProps = {
   label: string;
@@ -17,6 +20,8 @@ export function InfoCard({
   icon: Icon,
   className,
 }: InfoCardProps) {
+  const { t } = useI18n();
+
   return (
     <Reveal className="h-full" variant="scale">
       <article
@@ -33,15 +38,15 @@ export function InfoCard({
           </div>
 
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-red-700">
-            {label}
+            {t(label)}
           </p>
 
           <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
-            {value}
+            {t(value)}
           </h3>
 
           <p className="mt-4 text-sm leading-6 text-slate-600">
-            {description}
+            {t(description)}
           </p>
         </div>
       </article>

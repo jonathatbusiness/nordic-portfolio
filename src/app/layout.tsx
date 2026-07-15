@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 
+import { I18nProvider } from "@/i18n/I18nProvider";
 import { SpotifyPlayer } from "@/components/ui/SpotifyPlayer";
 
 import "./globals.css";
@@ -90,9 +91,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${oswald.variable}`}>
-        {children}
+        <I18nProvider>
+          {children}
 
-        <SpotifyPlayer />
+          <SpotifyPlayer />
+        </I18nProvider>
       </body>
     </html>
   );

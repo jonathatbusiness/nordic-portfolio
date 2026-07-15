@@ -1,13 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import { Crown, Landmark, ScrollText, Shield } from "lucide-react";
 import { ReferencePopover } from "@/components/ui/ReferencePopover";
-import { historySection } from "@/data/history";
+import { historySection as historySectionData } from "@/data/history";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Timeline } from "@/components/ui/Timeline";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function HistorySection() {
+  const { t, translate } = useI18n();
+  const historySection = translate(historySectionData);
+
   return (
     <section
       id="history"
@@ -68,11 +74,11 @@ export function HistorySection() {
         <div className="mt-20">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red-700">
-              Historical Timeline
+              {t("Historical Timeline")}
             </p>
 
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Key Moments in Norwegian History
+              {t("Key Moments in Norwegian History")}
             </h3>
           </div>
 
@@ -132,11 +138,11 @@ export function HistorySection() {
         <div className="mt-20">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red-700">
-              Famous Historical Figures
+              {t("Famous Historical Figures")}
             </p>
 
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              People Who Shaped Norway
+              {t("People Who Shaped Norway")}
             </h3>
           </div>
 

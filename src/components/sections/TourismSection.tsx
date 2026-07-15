@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Compass,
@@ -10,11 +12,12 @@ import {
   Waves,
 } from "lucide-react";
 
-import { tourismSection } from "@/data/tourism";
+import { tourismSection as tourismSectionData } from "@/data/tourism";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ReferencePopover } from "@/components/ui/ReferencePopover";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const categoryLabels = {
   city: "City",
@@ -53,6 +56,9 @@ const cityHighlights = [
 ];
 
 export function TourismSection() {
+  const { t, translate } = useI18n();
+  const tourismSection = translate(tourismSectionData);
+
   return (
     <section
       id="tourism"
@@ -83,7 +89,7 @@ export function TourismSection() {
 
             <div className="absolute left-6 top-6 flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 text-sm font-semibold backdrop-blur-md sm:left-8 sm:top-8">
               <Mountain size={18} className="text-red-400" aria-hidden="true" />
-              Featured Destination
+              {t("Featured Destination")}
             </div>
 
             {tourismSection.featured.reference && (
@@ -117,7 +123,7 @@ export function TourismSection() {
               </div>
 
               <p className="mt-7 text-sm font-semibold uppercase tracking-[0.2em] text-red-400">
-                {categoryLabels[tourismSection.featured.category]}
+                {t(categoryLabels[tourismSection.featured.category])}
               </p>
 
               <h3 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
@@ -160,7 +166,7 @@ export function TourismSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/5 to-transparent" />
 
                 <div className="absolute left-5 top-5 rounded-full border border-white/15 bg-slate-950/65 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md">
-                  {categoryLabels[destination.category]}
+                  {t(categoryLabels[destination.category])}
                 </div>
 
                 {destination.reference && (
@@ -193,7 +199,7 @@ export function TourismSection() {
 
                   <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-red-400">
                     <Navigation size={16} aria-hidden="true" />
-                    Discover this destination
+                    {t("Discover this destination")}
                   </div>
                 </div>
               </article>

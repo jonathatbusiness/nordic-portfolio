@@ -1,10 +1,13 @@
+"use client";
+
 import { Drum, Music2, Shirt, Soup, Sparkles } from "lucide-react";
 
-import { cultureSection } from "@/data/culture";
+import { cultureSection as cultureSectionData } from "@/data/culture";
 import { Container } from "@/components/ui/Container";
 import { ImageCard } from "@/components/ui/ImageCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const itemIcons = {
   "typical-food": Soup,
@@ -15,6 +18,8 @@ const itemIcons = {
 };
 
 export function CultureSection() {
+  const { translate } = useI18n();
+  const cultureSection = translate(cultureSectionData);
   const featuredItem = cultureSection.items.find((item) => item.featured);
 
   const secondaryItems = cultureSection.items.filter((item) => !item.featured);

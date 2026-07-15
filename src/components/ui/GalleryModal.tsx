@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import type { GalleryItem } from "@/types/gallery";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type GalleryModalProps = {
   item: GalleryItem;
@@ -25,6 +26,7 @@ export function GalleryModal({
   onNext,
 }: GalleryModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -87,7 +89,7 @@ export function GalleryModal({
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              aria-label="Close gallery"
+              aria-label={t("Close gallery")}
               className="flex size-11 items-center justify-center rounded-xl border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700"
             >
               <X size={22} aria-hidden="true" />
@@ -97,7 +99,7 @@ export function GalleryModal({
           <button
             type="button"
             onClick={onPrevious}
-            aria-label="Previous image"
+            aria-label={t("Previous image")}
             className="absolute left-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700 sm:left-6"
           >
             <ChevronLeft size={25} aria-hidden="true" />
@@ -106,7 +108,7 @@ export function GalleryModal({
           <button
             type="button"
             onClick={onNext}
-            aria-label="Next image"
+            aria-label={t("Next image")}
             className="absolute right-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700 sm:right-6"
           >
             <ChevronRight size={25} aria-hidden="true" />
@@ -115,7 +117,7 @@ export function GalleryModal({
 
         <div className="flex flex-col justify-center border-t border-white/10 p-7 text-white sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-400">
-            {item.category}
+            {t(item.category)}
           </p>
 
           <h3 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
@@ -129,7 +131,7 @@ export function GalleryModal({
           <div className="mt-8 h-px bg-white/10" />
 
           <p className="mt-6 text-sm leading-6 text-slate-500">
-            Use the arrow keys to navigate or press Esc to close.
+            {t("Use the arrow keys to navigate or press Esc to close.")}
           </p>
         </div>
       </div>

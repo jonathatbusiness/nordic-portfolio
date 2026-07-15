@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Award,
@@ -14,12 +16,13 @@ import {
   Users,
 } from "lucide-react";
 
-import { footballSection } from "@/data/football";
+import { footballSection as footballSectionData } from "@/data/football";
 import { Container } from "@/components/ui/Container";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { ReferencePopover } from "@/components/ui/ReferencePopover";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { FootballStat } from "@/types/portfolio";
 
 const statIcons = {
@@ -30,6 +33,9 @@ const statIcons = {
 } satisfies Record<FootballStat["icon"], typeof Shirt>;
 
 export function FootballSection() {
+  const { t, translate } = useI18n();
+  const footballSection = translate(footballSectionData);
+
   return (
     <section
       id="football"
@@ -59,7 +65,7 @@ export function FootballSection() {
 
             <div className="absolute left-6 top-6 flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 text-sm font-semibold backdrop-blur-md sm:left-8 sm:top-8">
               <Flag size={17} className="text-red-400" aria-hidden="true" />
-              Norway
+              {t("Norway")}
             </div>
 
             {footballSection.featuredPlayer.reference && (
@@ -304,7 +310,7 @@ export function FootballSection() {
                     key={country}
                     className="rounded-full border border-white/10 bg-slate-900 px-5 py-3 text-sm font-semibold"
                   >
-                    Norway vs {country}
+                    {t("Norway")} vs {t(country)}
                   </span>
                 ))}
               </div>
@@ -383,7 +389,7 @@ export function FootballSection() {
             <div className="absolute bottom-6 left-6 flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/65 px-5 py-3 backdrop-blur-md sm:bottom-8 sm:left-8">
               <Users size={19} aria-hidden="true" />
 
-              <span className="font-semibold">Norwegian Supporters</span>
+              <span className="font-semibold">{t("Norwegian Supporters")}</span>
             </div>
             </div>
 

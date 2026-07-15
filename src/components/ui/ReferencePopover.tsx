@@ -5,6 +5,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import type { ContentReference } from "@/types/portfolio";
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/utils/cn";
 
 type ReferencePopoverProps = {
@@ -33,6 +34,8 @@ export function ReferencePopover({
   variant = "light",
 }: ReferencePopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, translate } = useI18n();
+  const localizedReference = translate(reference);
 
   const [position, setPosition] = useState<PopoverPosition>({
     top: 0,
@@ -175,7 +178,7 @@ export function ReferencePopover({
             ref={popoverRef}
             id={popoverId}
             role="dialog"
-            aria-label="Image reference"
+            aria-label={t("Image reference")}
             style={{
               position: "fixed",
               top: position.top,
@@ -196,18 +199,18 @@ export function ReferencePopover({
 
                 <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
-                    {reference.label ?? "Image Reference"}
+                    {localizedReference.label ?? t("Image Reference")}
                   </p>
 
                   <h4 className="mt-1 text-base font-bold leading-6 text-slate-950">
-                    {reference.title}
+                    {localizedReference.title}
                   </h4>
                 </div>
               </div>
 
               <button
                 type="button"
-                aria-label="Close image reference"
+                aria-label={t("Close image reference")}
                 onClick={() => {
                   setIsOpen(false);
                   buttonRef.current?.focus();
@@ -219,21 +222,21 @@ export function ReferencePopover({
             </div>
 
             <div className="mt-5 space-y-3">
-              {reference.details.map((detail) => (
+              {localizedReference.details.map((detail) => (
                 <p key={detail} className="text-sm leading-6 text-slate-600">
                   {detail}
                 </p>
               ))}
             </div>
 
-            {reference.url && (
+            {localizedReference.url && (
               <a
-                href={reference.url}
+                href={localizedReference.url}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
               >
-                {reference.linkLabel ?? "Open source"}
+                {localizedReference.linkLabel ?? t("Open source")}
 
                 <ExternalLink size={16} aria-hidden="true" />
               </a>
@@ -249,7 +252,7 @@ export function ReferencePopover({
         <button
           ref={buttonRef}
           type="button"
-          aria-label={`View image reference for ${reference.title}`}
+          aria-label={`${t("View image reference for")} ${localizedReference.title}`}
           aria-expanded={isOpen}
           aria-controls={popoverId}
           aria-pressed={isOpen}

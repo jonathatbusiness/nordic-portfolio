@@ -3,6 +3,7 @@
 import { ChevronDown, ChevronUp, Music2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/utils/cn";
 
 const STORAGE_KEY = "norway-spotify-player-collapsed";
@@ -11,15 +12,21 @@ export function SpotifyPlayer() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
-    setIsMounted(true);
-
     const storedValue = window.localStorage.getItem(STORAGE_KEY);
+    const animationFrame = requestAnimationFrame(() => {
+      setIsMounted(true);
 
-    if (storedValue === "true") {
-      setIsCollapsed(true);
-    }
+      if (storedValue === "true") {
+        setIsCollapsed(true);
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   function togglePlayer() {
@@ -52,7 +59,7 @@ export function SpotifyPlayer() {
       <button
         type="button"
         onClick={showPlayer}
-        aria-label="Show Norway Spotify playlist"
+        aria-label={t("Show Norway Spotify playlist")}
         className={cn(
           "fixed z-[9000] flex items-center gap-2 rounded-full border border-white/15 bg-slate-950/95 px-4 py-3 text-sm font-semibold text-white shadow-2xl backdrop-blur-xl transition",
           "hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500",
@@ -61,14 +68,14 @@ export function SpotifyPlayer() {
         )}
       >
         <Music2 size={18} className="text-red-400" aria-hidden="true" />
-        Show soundtrack
+        {t("Show soundtrack")}
       </button>
     );
   }
 
   return (
     <aside
-      aria-label="Norway Spotify playlist"
+      aria-label={t("Norway Spotify playlist")}
       className={cn(
         "fixed z-[9000] overflow-hidden border border-white/10 bg-slate-950/95 text-white shadow-2xl backdrop-blur-xl transition-all duration-300",
         "bottom-3 left-3 right-3 rounded-2xl",
@@ -90,11 +97,11 @@ export function SpotifyPlayer() {
 
           <span className="min-w-0">
             <span className="block truncate text-sm font-semibold">
-              Norway Portfolio Soundtrack
+              {t("Norway Portfolio Soundtrack")}
             </span>
 
             <span className="block truncate text-xs text-slate-400">
-              Listen while exploring
+              {t("Listen while exploring")}
             </span>
           </span>
         </button>
@@ -104,7 +111,9 @@ export function SpotifyPlayer() {
             type="button"
             onClick={togglePlayer}
             aria-label={
-              isCollapsed ? "Expand Spotify player" : "Collapse Spotify player"
+              isCollapsed
+                ? t("Expand Spotify player")
+                : t("Collapse Spotify player")
             }
             className="flex size-9 items-center justify-center rounded-xl text-slate-300 transition hover:bg-white/10 hover:text-white"
           >
@@ -118,7 +127,7 @@ export function SpotifyPlayer() {
           <button
             type="button"
             onClick={hidePlayer}
-            aria-label="Hide Spotify player"
+            aria-label={t("Hide Spotify player")}
             className="flex size-9 items-center justify-center rounded-xl text-slate-400 transition hover:bg-red-700 hover:text-white"
           >
             <X size={18} aria-hidden="true" />
@@ -135,7 +144,7 @@ export function SpotifyPlayer() {
       >
         <iframe
           data-testid="embed-iframe"
-          title="Norway Portfolio Soundtrack on Spotify"
+          title={t("Norway Portfolio Soundtrack on Spotify")}
           src="https://open.spotify.com/embed/playlist/2uLhFliUybPDtbV3ArtzEc?utm_source=generator&si=4b1dff80f1d14a38"
           width="100%"
           height="352"

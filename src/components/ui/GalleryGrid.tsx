@@ -7,21 +7,26 @@ import { useCallback, useMemo, useState } from "react";
 import { galleryCategories, galleryItems } from "@/data/gallery";
 import { GalleryModal } from "@/components/ui/GalleryModal";
 import { Reveal } from "@/components/ui/Reveal";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { GalleryCategory, GalleryItem } from "@/types/gallery";
 import { cn } from "@/utils/cn";
 
 export function GalleryGrid() {
+  const { t, translate } = useI18n();
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>("all");
 
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
+  const localizedGalleryCategories = translate(galleryCategories);
+  const localizedGalleryItems = translate(galleryItems);
+
   const filteredItems = useMemo(() => {
     if (activeCategory === "all") {
-      return galleryItems;
+      return localizedGalleryItems;
     }
 
-    return galleryItems.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
+    return localizedGalleryItems.filter((item) => item.category === activeCategory);
+  }, [activeCategory, localizedGalleryItems]);
 
   const selectedIndex = selectedItem
     ? filteredItems.findIndex((item) => item.id === selectedItem.id)
@@ -70,7 +75,7 @@ export function GalleryGrid() {
     <>
       <Reveal>
         <div className="mt-10 flex flex-wrap gap-3">
-          {galleryCategories.map((category) => (
+          {localizedGalleryCategories.map((category) => (
             <button
               key={category.id}
               type="button"
@@ -103,7 +108,7 @@ export function GalleryGrid() {
               <button
                 type="button"
                 onClick={() => setSelectedItem(item)}
-                aria-label={`Open ${item.title} in gallery`}
+                aria-label={`${t("Open")} ${item.title} ${t("in gallery")}`}
                 className={cn(
                   "group relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900 text-left shadow-lg",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
@@ -125,7 +130,7 @@ export function GalleryGrid() {
 
               <div className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-400">
-                  {item.category}
+                  {t(item.category)}
                 </p>
 
                 <h3 className="mt-2 text-2xl font-bold text-white">
@@ -143,7 +148,7 @@ export function GalleryGrid() {
           <Images size={36} className="text-slate-500" aria-hidden="true" />
 
           <p className="mt-4 font-semibold text-slate-300">
-            No images are available in this category.
+            {t("No images are available in this category.")}
           </p>
         </div>
       )}

@@ -1,10 +1,13 @@
+"use client";
+
 import { Building2, CloudSnow, Compass, MapPinned, Ruler } from "lucide-react";
 
-import { countryOverview } from "@/data/country";
+import { countryOverview as countryOverviewData } from "@/data/country";
 import { Container } from "@/components/ui/Container";
 import { InfoCard } from "@/components/ui/InfoCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/i18n/I18nProvider";
 import type { CountryStat } from "@/types/portfolio";
 import Image from "next/image";
 
@@ -16,6 +19,9 @@ const statIcons = {
 } satisfies Record<CountryStat["icon"], typeof Building2>;
 
 export function CountryOverview() {
+  const { t, translate } = useI18n();
+  const countryOverview = translate(countryOverviewData);
+
   return (
     <section
       id="norway"
@@ -34,7 +40,7 @@ export function CountryOverview() {
             <div className="relative min-h-[26rem] flex-1 overflow-hidden">
               <Image
                 src="/images/country/norway-map.webp"
-                alt="Map of Norway"
+                alt={t("Map of Norway")}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 55vw"
@@ -49,7 +55,7 @@ export function CountryOverview() {
                 </div>
 
                 <span className="rounded-full border border-slate-950/15 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-900 shadow-lg backdrop-blur-md">
-                  Northern Europe
+                  {t("Northern Europe")}
                 </span>
               </div>
             </div>
@@ -59,12 +65,13 @@ export function CountryOverview() {
 
               <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-red-400">
-                  Norway
+                  {t("Norway")}
                 </p>
 
                 <p className="mt-2 max-w-lg text-lg leading-7 text-slate-200">
-                  Located in the western part of the Scandinavian Peninsula,
-                  extending from southern Scandinavia into the Arctic Circle.
+                  {t(
+                    "Located in the western part of the Scandinavian Peninsula, extending from southern Scandinavia into the Arctic Circle.",
+                  )}
                 </p>
               </div>
             </div>
@@ -93,12 +100,12 @@ export function CountryOverview() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {["Sweden", "Finland", "Russia"].map((country) => (
-                <span
-                  key={country}
+                {["Sweden", "Finland", "Russia"].map((country) => (
+                  <span
+                    key={country}
                   className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
                 >
-                  {country}
+                    {t(country)}
                 </span>
               ))}
             </div>
@@ -131,7 +138,7 @@ export function CountryOverview() {
           <div className="relative grid items-center gap-10 p-7 sm:p-10 lg:grid-cols-[0.7fr_1.3fr] lg:p-12">
             <div
               className="relative mx-auto aspect-[11/8] w-full max-w-sm overflow-hidden rounded-2xl border border-white/20 bg-red-600 shadow-2xl"
-              aria-label="Stylised representation of the Norwegian flag"
+              aria-label={t("Stylised representation of the Norwegian flag")}
             >
               <div className="absolute inset-y-0 left-[30%] w-[18%] bg-white" />
               <div className="absolute inset-x-0 top-[38%] h-[25%] bg-white" />
@@ -142,7 +149,7 @@ export function CountryOverview() {
 
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red-100">
-                National Symbol
+                {t("National Symbol")}
               </p>
 
               <h3 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Volume2 } from "lucide-react";
 
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/utils/cn";
 
 type SpeakButtonProps = {
@@ -33,11 +34,17 @@ export function SpeakButton({
   const [isSupported, setIsSupported] = useState(true);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const { t } = useI18n();
 
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-      setIsSupported(false);
-      return;
+      const animationFrame = requestAnimationFrame(() => {
+        setIsSupported(false);
+      });
+
+      return () => {
+        cancelAnimationFrame(animationFrame);
+      };
     }
 
     const synthesis = window.speechSynthesis;
@@ -121,7 +128,7 @@ export function SpeakButton({
           "inline-flex items-center gap-2 text-sm text-slate-500",
           className,
         )}
-        title="Speech synthesis is not supported by this browser."
+        title={t("Speech synthesis is not supported by this browser.")}
       >
         <Volume2 size={compact ? 15 : 18} aria-hidden="true" />
 
@@ -134,9 +141,9 @@ export function SpeakButton({
     <button
       type="button"
       onClick={speak}
-      aria-label={label ?? `Listen to the pronunciation of ${text}`}
+      aria-label={label ?? `${t("Listen to the pronunciation of")} ${text}`}
       aria-pressed={isSpeaking}
-      title={`Listen to “${text}”`}
+      title={`${t("Listen to")} “${text}”`}
       className={cn(
         "inline-flex cursor-pointer items-center gap-2 transition",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2",

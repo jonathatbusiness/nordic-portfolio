@@ -5,10 +5,14 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navigationItems } from "@/data/navigation";
 import { Container } from "@/components/ui/Container";
+import { LanguageSelector } from "@/components/ui/LanguageSelector";
+import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/utils/cn";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, translate } = useI18n();
+  const localizedNavigationItems = translate(navigationItems);
 
   function closeMenu() {
     setIsMenuOpen(false);
@@ -31,11 +35,11 @@ export function Header() {
               className="size-10 rounded-full border border-white/20 shadow-sm"
             />
 
-            <span className="text-lg uppercase">Norway</span>
+            <span className="text-lg uppercase">{t("Norway")}</span>
           </a>
 
           <nav className="hidden items-center gap-6 lg:flex">
-            {navigationItems.map((item) => (
+            {localizedNavigationItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -44,13 +48,15 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+
+            <LanguageSelector />
           </nav>
 
           <button
             type="button"
             className="flex size-10 items-center justify-center rounded-full border border-white/15 lg:hidden"
             aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+              isMenuOpen ? t("Close navigation menu") : t("Open navigation menu")
             }
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((current) => !current)}
@@ -70,7 +76,7 @@ export function Header() {
       >
         <Container className="py-5">
           <nav className="flex flex-col">
-            {navigationItems.map((item) => (
+            {localizedNavigationItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -80,6 +86,10 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+
+            <div className="pt-4">
+              <LanguageSelector />
+            </div>
           </nav>
         </Container>
       </div>

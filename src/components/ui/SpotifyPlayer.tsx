@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronUp, Music2, X } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink, Music2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { useI18n } from "@/i18n/I18nProvider";
@@ -8,20 +8,31 @@ import { cn } from "@/utils/cn";
 
 const STORAGE_KEY = "norway-spotify-player-collapsed";
 
+const PLAYLIST_URL = "https://open.spotify.com/playlist/2uLhFliUybPDtbV3ArtzEc";
+
+const EMBED_URL =
+  "https://open.spotify.com/embed/playlist/2uLhFliUybPDtbV3ArtzEc?utm_source=generator&si=4b1dff80f1d14a38";
+
 export function SpotifyPlayer() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
   const { t } = useI18n();
 
   useEffect(() => {
     const storedValue = window.localStorage.getItem(STORAGE_KEY);
+
     const animationFrame = requestAnimationFrame(() => {
       setIsMounted(true);
 
-      if (storedValue === "true") {
-        setIsCollapsed(true);
+      if (storedValue !== null) {
+        setIsCollapsed(storedValue === "true");
+        return;
       }
+
+      // Na primeira visita, começa recolhido no mobile.
+      setIsCollapsed(window.innerWidth < 768);
     });
 
     return () => {
@@ -68,6 +79,7 @@ export function SpotifyPlayer() {
         )}
       >
         <Music2 size={18} className="text-red-400" aria-hidden="true" />
+
         {t("Show soundtrack")}
       </button>
     );
@@ -80,7 +92,7 @@ export function SpotifyPlayer() {
         "fixed z-[9000] overflow-hidden border border-white/10 bg-slate-950/95 text-white shadow-2xl backdrop-blur-xl transition-all duration-300",
         "bottom-3 left-3 right-3 rounded-2xl",
         "md:bottom-6 md:left-auto md:right-6 md:w-[352px]",
-        isCollapsed ? "h-[54px]" : "h-[406px] md:h-[410px]",
+        isCollapsed ? "h-[54px]" : "h-[446px]",
       )}
     >
       <div className="flex h-[54px] items-center justify-between gap-3 border-b border-white/10 px-4">
@@ -145,7 +157,7 @@ export function SpotifyPlayer() {
         <iframe
           data-testid="embed-iframe"
           title={t("Norway Portfolio Soundtrack on Spotify")}
-          src="https://open.spotify.com/embed/playlist/2uLhFliUybPDtbV3ArtzEc?utm_source=generator&si=4b1dff80f1d14a38"
+          src={EMBED_URL}
           width="100%"
           height="352"
           frameBorder="0"
@@ -154,6 +166,18 @@ export function SpotifyPlayer() {
           loading="lazy"
           className="block w-full"
         />
+
+        <a
+          href={PLAYLIST_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t("Open full playlist on Spotify")}
+          className="flex h-10 items-center justify-center gap-2 border-t border-white/10 bg-white/5 px-4 text-xs font-semibold text-white transition hover:bg-white/10"
+        >
+          {t("Open full playlist on Spotify")}
+
+          <ExternalLink size={14} aria-hidden="true" />
+        </a>
       </div>
     </aside>
   );

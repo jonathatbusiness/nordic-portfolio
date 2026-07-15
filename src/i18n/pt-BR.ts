@@ -48,7 +48,7 @@ export const ptBRTranslations: Record<string, string> = {
   "Norwegian traditions have been shaped by rural communities, regional identity, nature and centuries of history.":
     "As tradições norueguesas foram moldadas por comunidades rurais, identidade regional, natureza e séculos de história.",
   "Typical Food": "Comida típica",
-  "Fårikål": "Fårikål",
+  Fårikål: "Fårikål",
   "A simple and traditional stew considered Norway’s national dish.":
     "Um ensopado simples e tradicional considerado o prato nacional da Noruega.",
   "Traditional Music": "Música tradicional",
@@ -67,7 +67,8 @@ export const ptBRTranslations: Record<string, string> = {
   "Norway’s history includes exploration, political unions, independence, resistance and major economic transformation.":
     "A história da Noruega inclui exploração, uniões políticas, independência, resistência e grande transformação econômica.",
   "Historical Timeline": "Linha do tempo histórica",
-  "Key Moments in Norwegian History": "Momentos importantes da história norueguesa",
+  "Key Moments in Norwegian History":
+    "Momentos importantes da história norueguesa",
   "Important Historical Event": "Evento Histórico Importante",
   "The Viking Age": "A Era Viking",
   "Late 8th–11th century": "Final do século VIII ao século XI",
@@ -78,7 +79,8 @@ export const ptBRTranslations: Record<string, string> = {
   Independence: "Independência",
   "The End of the Union with Sweden": "O fim da união com a Suécia",
   "Conflicts & Achievements": "Conflitos e conquistas",
-  "Resistance, Prosperity and Diplomacy": "Resistência, prosperidade e diplomacia",
+  "Resistance, Prosperity and Diplomacy":
+    "Resistência, prosperidade e diplomacia",
   "Famous Historical Figures": "Figuras históricas famosas",
   "People Who Shaped Norway": "Pessoas que moldaram a Noruega",
   "Early King of Norway": "Antigo rei da Noruega",
@@ -148,7 +150,8 @@ export const ptBRTranslations: Record<string, string> = {
   "Natural Landscapes": "Paisagens naturais",
   "Nature on a Grand Scale": "Natureza em grande escala",
   "Famous Cities": "Cidades famosas",
-  "Three Different Norwegian Experiences": "Três experiências norueguesas diferentes",
+  "Three Different Norwegian Experiences":
+    "Três experiências norueguesas diferentes",
   "Capital and Cultural Centre": "Capital e centro cultural",
   "Gateway to the Fjords": "Portal dos fiordes",
   "Arctic Destination": "Destino ártico",
@@ -190,6 +193,7 @@ export const ptBRTranslations: Record<string, string> = {
   "Hide Spotify player": "Ocultar player do Spotify",
   "Norway Portfolio Soundtrack on Spotify":
     "Trilha sonora do portfólio da Noruega no Spotify",
+  "Open full playlist on Spotify": "Ouvir playlist completa no Spotify",
   "Open source": "Abrir fonte",
   "Image Reference": "Referência da imagem",
   "Visit Norway's Best": "Visitar Norway's Best",
@@ -521,7 +525,8 @@ export const ptBRTranslations: Record<string, string> = {
     "No período moderno, a descoberta de petróleo e gás no Mar do Norte transformou a Noruega em um dos países mais prósperos do mundo.",
   "Norway also became known for diplomacy, humanitarian aid and participation in international peace negotiations.":
     "A Noruega também ficou conhecida pela diplomacia, ajuda humanitária e participação em negociações internacionais de paz.",
-  "Original image provided by Pixabay.": "Imagem original fornecida pelo Pixabay.",
+  "Original image provided by Pixabay.":
+    "Imagem original fornecida pelo Pixabay.",
   "Uploaded by Arienne King and published on 26 March 2021.":
     "Enviada por Arienne King e publicada em 26 de março de 2021.",
   "The copyright holder released this image into the public domain.":
@@ -535,8 +540,7 @@ export const ptBRTranslations: Record<string, string> = {
   "Owner institution: Nasjonalbiblioteket — National Library of Norway.":
     "Instituição proprietária: Nasjonalbiblioteket — Biblioteca Nacional da Noruega.",
   "Image number: blds_04773.": "Número da imagem: blds_04773.",
-  "Photograph by Henry Van der Weyde.":
-    "Fotografia de Henry Van der Weyde.",
+  "Photograph by Henry Van der Weyde.": "Fotografia de Henry Van der Weyde.",
   "Original file: Fridtjof Nansen LOC 03377u.":
     "Arquivo original: Fridtjof Nansen LOC 03377u.",
   "Created on 29 April 1915.": "Criada em 29 de abril de 1915.",
@@ -559,7 +563,7 @@ export const ptBRTranslations: Record<string, string> = {
     "Da coleção do Norsk Folkemuseum — o Museu Norueguês de História Cultural.",
   "Norway combines a strong cultural identity, a highly developed economy and public services designed to support daily life.":
     "A Noruega combina uma forte identidade cultural, uma economia altamente desenvolvida e serviços públicos pensados para apoiar a vida cotidiana.",
-  "Currency": "Moeda",
+  Currency: "Moeda",
   "Norwegian Krone": "Coroa norueguesa",
   "Norway uses the Norwegian krone, commonly represented by the code NOK.":
     "A Noruega usa a coroa norueguesa, geralmente representada pelo código NOK.",
@@ -571,7 +575,7 @@ export const ptBRTranslations: Record<string, string> = {
   "High Living Standards": "Alto padrão de vida",
   "Norway is known for public services, education, healthcare and strong social protections.":
     "A Noruega é conhecida por seus serviços públicos, educação, saúde e fortes proteções sociais.",
-  "Innovation": "Inovação",
+  Innovation: "Inovação",
   "Digital & Sustainable": "Digital e sustentável",
   "Norwegian organisations invest in renewable energy, maritime technology, digital services and environmental solutions.":
     "Organizações norueguesas investem em energia renovável, tecnologia marítima, serviços digitais e soluções ambientais.",

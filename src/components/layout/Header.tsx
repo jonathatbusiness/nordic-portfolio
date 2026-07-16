@@ -7,6 +7,7 @@ import { navigationItems } from "@/data/navigation";
 import { Container } from "@/components/ui/Container";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 import { cn } from "@/utils/cn";
 
 export function Header() {
@@ -18,6 +19,14 @@ export function Header() {
     setIsMenuOpen(false);
   }
 
+  function trackNavigationClick(label: string, href: string, menuType: string) {
+    trackEvent("navigation_click", {
+      label,
+      href,
+      menu_type: menuType,
+    });
+  }
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/85 text-white backdrop-blur-xl">
       <Container>
@@ -25,7 +34,10 @@ export function Header() {
           <a
             href="#home"
             className="flex items-center gap-3 font-bold tracking-wide"
-            onClick={closeMenu}
+            onClick={() => {
+              trackNavigationClick("Norway", "#home", "brand");
+              closeMenu();
+            }}
           >
             <Image
               src="/android-icon-48x48.png"
@@ -44,6 +56,9 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium text-slate-200 transition hover:text-white"
+                onClick={() =>
+                  trackNavigationClick(item.label, item.href, "desktop")
+                }
               >
                 {item.label}
               </a>
@@ -59,7 +74,15 @@ export function Header() {
               isMenuOpen ? t("Close navigation menu") : t("Open navigation menu")
             }
             aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((current) => !current)}
+            onClick={() => {
+              const nextValue = !isMenuOpen;
+
+              trackEvent("mobile_menu_toggle", {
+                state: nextValue ? "open" : "closed",
+              });
+
+              setIsMenuOpen(nextValue);
+            }}
           >
             {isMenuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
@@ -81,7 +104,10 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className="border-b border-white/10 py-4 text-base font-medium text-slate-200 last:border-none"
-                onClick={closeMenu}
+                onClick={() => {
+                  trackNavigationClick(item.label, item.href, "mobile");
+                  closeMenu();
+                }}
               >
                 {item.label}
               </a>

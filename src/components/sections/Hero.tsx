@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowDown, Images } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 
 export function Hero() {
   const { t } = useI18n();
@@ -60,6 +61,12 @@ export function Hero() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
               href="#norway"
+              onClick={() =>
+                trackEvent("hero_cta_click", {
+                  label: "Explore the Portfolio",
+                  href: "#norway",
+                })
+              }
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-red-700 px-6 font-semibold transition hover:bg-red-600"
             >
               {t("Explore the Portfolio")}
@@ -68,6 +75,12 @@ export function Hero() {
 
             <a
               href="#gallery"
+              onClick={() =>
+                trackEvent("hero_cta_click", {
+                  label: "View Gallery",
+                  href: "#gallery",
+                })
+              }
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 font-semibold backdrop-blur-sm transition hover:bg-white/20"
             >
               <Images size={18} />

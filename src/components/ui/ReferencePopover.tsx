@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 
 import type { ContentReference } from "@/types/portfolio";
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 import { cn } from "@/utils/cn";
 
 type ReferencePopoverProps = {
@@ -46,6 +47,18 @@ export function ReferencePopover({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const popoverId = useId();
+
+  function toggleReference() {
+    const nextValue = !isOpen;
+
+    trackEvent("reference_popover_toggle", {
+      reference_id: reference.id,
+      reference_title: localizedReference.title,
+      state: nextValue ? "open" : "closed",
+    });
+
+    setIsOpen(nextValue);
+  }
 
   const updatePosition = useCallback(() => {
     const button = buttonRef.current;
@@ -234,6 +247,13 @@ export function ReferencePopover({
                 href={localizedReference.url}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackEvent("reference_source_click", {
+                    reference_id: reference.id,
+                    reference_title: localizedReference.title,
+                    outbound_url: localizedReference.url,
+                  })
+                }
                 className="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
               >
                 {localizedReference.linkLabel ?? t("Open source")}
@@ -256,7 +276,7 @@ export function ReferencePopover({
           aria-expanded={isOpen}
           aria-controls={popoverId}
           aria-pressed={isOpen}
-          onClick={() => setIsOpen((current) => !current)}
+          onClick={toggleReference}
           className={cn(
             "inline-flex size-11 items-center justify-center rounded-xl border shadow-lg backdrop-blur-md transition",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2",

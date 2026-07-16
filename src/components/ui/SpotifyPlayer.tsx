@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp, ExternalLink, Music2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 import { cn } from "@/utils/cn";
 
 const STORAGE_KEY = "norway-spotify-player-collapsed";
@@ -46,15 +47,23 @@ export function SpotifyPlayer() {
 
       window.localStorage.setItem(STORAGE_KEY, String(nextValue));
 
+      trackEvent("spotify_player_toggle", {
+        state: nextValue ? "collapsed" : "expanded",
+      });
+
       return nextValue;
     });
   }
 
   function hidePlayer() {
+    trackEvent("spotify_player_hide");
+
     setIsHidden(true);
   }
 
   function showPlayer() {
+    trackEvent("spotify_player_show");
+
     setIsHidden(false);
     setIsCollapsed(true);
 
@@ -171,6 +180,11 @@ export function SpotifyPlayer() {
           href={PLAYLIST_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            trackEvent("spotify_playlist_open", {
+              outbound_url: PLAYLIST_URL,
+            })
+          }
           aria-label={t("Open full playlist on Spotify")}
           className="flex h-10 items-center justify-center gap-2 border-t border-white/10 bg-white/5 px-4 text-xs font-semibold text-white transition hover:bg-white/10"
         >

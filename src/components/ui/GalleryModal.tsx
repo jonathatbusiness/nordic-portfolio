@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import type { GalleryItem } from "@/types/gallery";
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 
 type GalleryModalProps = {
   item: GalleryItem;
@@ -28,6 +29,31 @@ export function GalleryModal({
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { t } = useI18n();
 
+  const closeGallery = useCallback((closeMethod: string) => {
+    trackEvent("gallery_modal_close", {
+      item_id: item.id,
+      item_title: item.title,
+      close_method: closeMethod,
+    });
+
+    onClose();
+  }, [item.id, item.title, onClose]);
+
+  const navigateGallery = useCallback((direction: "previous" | "next") => {
+    trackEvent("gallery_modal_navigation", {
+      item_id: item.id,
+      item_title: item.title,
+      direction,
+    });
+
+    if (direction === "previous") {
+      onPrevious();
+      return;
+    }
+
+    onNext();
+  }, [item.id, item.title, onNext, onPrevious]);
+
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
 
@@ -36,15 +62,15 @@ export function GalleryModal({
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        onClose();
+        closeGallery("keyboard");
       }
 
       if (event.key === "ArrowLeft") {
-        onPrevious();
+        navigateGallery("previous");
       }
 
       if (event.key === "ArrowRight") {
-        onNext();
+        navigateGallery("next");
       }
     }
 
@@ -55,7 +81,7 @@ export function GalleryModal({
 
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose, onNext, onPrevious]);
+  }, [closeGallery, navigateGallery]);
 
   return createPortal(
     <div
@@ -63,9 +89,9 @@ export function GalleryModal({
       aria-modal="true"
       aria-label={item.title}
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-md sm:p-8"
-      onMouseDown={(event) => {
+          onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
-          onClose();
+          closeGallery("backdrop");
         }
       }}
     >
@@ -88,7 +114,7 @@ export function GalleryModal({
             <button
               ref={closeButtonRef}
               type="button"
-              onClick={onClose}
+              onClick={() => closeGallery("button")}
               aria-label={t("Close gallery")}
               className="flex size-11 items-center justify-center rounded-xl border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700"
             >
@@ -98,7 +124,7 @@ export function GalleryModal({
 
           <button
             type="button"
-            onClick={onPrevious}
+            onClick={() => navigateGallery("previous")}
             aria-label={t("Previous image")}
             className="absolute left-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700 sm:left-6"
           >
@@ -107,7 +133,7 @@ export function GalleryModal({
 
           <button
             type="button"
-            onClick={onNext}
+            onClick={() => navigateGallery("next")}
             aria-label={t("Next image")}
             className="absolute right-4 top-1/2 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/65 text-white backdrop-blur-md transition hover:bg-red-700 sm:right-6"
           >

@@ -9,6 +9,7 @@ import { GalleryModal } from "@/components/ui/GalleryModal";
 import { Reveal } from "@/components/ui/Reveal";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { GalleryCategory, GalleryItem } from "@/types/gallery";
+import { trackEvent } from "@/utils/analytics";
 import { cn } from "@/utils/cn";
 
 export function GalleryGrid() {
@@ -67,8 +68,22 @@ export function GalleryGrid() {
   }, [filteredItems, selectedItem]);
 
   function changeCategory(category: GalleryCategory) {
+    trackEvent("gallery_filter_click", {
+      category,
+    });
+
     setActiveCategory(category);
     setSelectedItem(null);
+  }
+
+  function openGalleryItem(item: GalleryItem) {
+    trackEvent("gallery_image_open", {
+      item_id: item.id,
+      item_title: item.title,
+      category: item.category,
+    });
+
+    setSelectedItem(item);
   }
 
   return (
@@ -107,7 +122,7 @@ export function GalleryGrid() {
             >
               <button
                 type="button"
-                onClick={() => setSelectedItem(item)}
+                onClick={() => openGalleryItem(item)}
                 aria-label={`${t("Open")} ${item.title} ${t("in gallery")}`}
                 className={cn(
                   "group relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900 text-left shadow-lg",

@@ -18,6 +18,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ReferencePopover } from "@/components/ui/ReferencePopover";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useI18n } from "@/i18n/I18nProvider";
+import { trackEvent } from "@/utils/analytics";
 
 const categoryLabels = {
   city: "City",
@@ -201,6 +202,14 @@ export function TourismSection() {
                     href={destination.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      trackEvent("tourism_destination_click", {
+                        destination_id: destination.id,
+                        destination_name: destination.name,
+                        destination_category: destination.category,
+                        outbound_url: destination.websiteUrl,
+                      })
+                    }
                     aria-label={`${t("Discover this destination")}: ${destination.name}`}
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-red-400 transition hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-300"
                   >

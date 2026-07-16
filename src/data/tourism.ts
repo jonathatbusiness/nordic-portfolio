@@ -41,6 +41,8 @@ export const tourismSection: TourismSectionData = {
         "Norway’s capital combines modern architecture, museums, waterfront areas, parks and important cultural institutions.",
       image: "/images/tourism/oslo.webp",
       imageAlt: "Waterfront and modern architecture in Oslo, Norway",
+      websiteUrl:
+        "https://www.visitnorway.com/places-to-go/eastern-norway/oslo/",
       reference: {
         id: "oslo-image-reference",
         label: "Image Reference",
@@ -57,6 +59,8 @@ export const tourismSection: TourismSectionData = {
         "Bergen is known as the gateway to the fjords and is famous for its colourful historic Bryggen district.",
       image: "/images/tourism/bergen.webp",
       imageAlt: "Colourful wooden buildings in the Bryggen district of Bergen",
+      websiteUrl:
+        "https://www.visitnorway.com/places-to-go/fjord-norway/bergen/",
       reference: {
         id: "bergen-image-reference",
         label: "Image Reference",
@@ -72,6 +76,8 @@ export const tourismSection: TourismSectionData = {
       description:
         "Tromsø is an important Arctic city and a popular destination for northern lights, winter activities and polar culture.",
       image: "/images/tourism/tromso.webp",
+      websiteUrl:
+        "https://www.visitnorway.com/places-to-go/northern-norway/tromso/",
       reference: {
         id: "tromso-image-reference",
         label: "Image Reference",
@@ -93,6 +99,7 @@ export const tourismSection: TourismSectionData = {
       description:
         "The Lofoten Islands are known for sharp mountains, fishing villages, beaches and dramatic coastal scenery.",
       image: "/images/tourism/lofoten.webp",
+      websiteUrl: "https://visitlofoten.com/en/",
       reference: {
         id: "lofoten-image-reference",
         label: "Image Reference",
@@ -111,6 +118,8 @@ export const tourismSection: TourismSectionData = {
         "Preikestolen, also called Pulpit Rock, is a famous cliff rising high above Lysefjord.",
       image: "/images/tourism/preikestolen.webp",
       imageAlt: "Preikestolen cliff overlooking Lysefjord in Norway",
+      websiteUrl:
+        "https://www.visitnorway.com/places-to-go/fjord-norway/ryfylke/the-lysefjord-area/hiking-to-preikestolen/",
       reference: {
         id: "preikestolen-image-reference",
         label: "Image Reference",
@@ -127,6 +136,8 @@ export const tourismSection: TourismSectionData = {
         "North Cape is a dramatic coastal viewpoint in northern Norway, famous for Arctic landscapes and the midnight sun.",
       image: "/images/tourism/north-cape.webp",
       imageAlt: "North Cape monument overlooking the Arctic Ocean",
+      websiteUrl:
+        "https://www.visitnorway.com/places-to-go/northern-norway/the-north-cape/",
       reference: {
         id: "north-cape-image-reference",
         label: "Image Reference",

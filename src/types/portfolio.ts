@@ -246,6 +246,7 @@ export type TourismDestination = {
   description: string;
   image: string;
   imageAlt: string;
+  websiteUrl?: string;
   reference?: ContentReference;
   featured?: boolean;
 };

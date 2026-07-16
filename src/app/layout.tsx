@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import Script from "next/script";
 
 import { I18nProvider } from "@/i18n/I18nProvider";
 import { SpotifyPlayer } from "@/components/ui/SpotifyPlayer";
@@ -98,6 +99,18 @@ export default function RootLayout({
           <SpotifyPlayer />
         </I18nProvider>
       </body>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-7YNP1GN30P"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-7YNP1GN30P');
+        `}
+      </Script>
     </html>
   );
 }

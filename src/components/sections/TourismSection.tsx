@@ -197,10 +197,16 @@ export function TourismSection() {
                     {destination.description}
                   </p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-red-400">
+                  <a
+                    href={destination.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${t("Discover this destination")}: ${destination.name}`}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-red-400 transition hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-300"
+                  >
                     <Navigation size={16} aria-hidden="true" />
                     {t("Discover this destination")}
-                  </div>
+                  </a>
                 </div>
               </article>
             </Reveal>

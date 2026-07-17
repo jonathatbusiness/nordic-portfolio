@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navigationItems } from "@/data/navigation";
@@ -31,11 +32,11 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/85 text-white backdrop-blur-xl">
       <Container>
         <div className="flex h-[4.5rem] items-center justify-between">
-          <a
-            href="#home"
+          <Link
+            href="/#home"
             className="flex items-center gap-3 font-bold tracking-wide"
             onClick={() => {
-              trackNavigationClick("Norway", "#home", "brand");
+              trackNavigationClick("Norway", "/#home", "brand");
               closeMenu();
             }}
           >
@@ -48,11 +49,11 @@ export function Header() {
             />
 
             <span className="text-lg uppercase">{t("Norway")}</span>
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-6 lg:flex">
             {localizedNavigationItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium text-slate-200 transition hover:text-white"
@@ -61,7 +62,7 @@ export function Header() {
                 }
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
 
             <LanguageSelector />
@@ -100,7 +101,7 @@ export function Header() {
         <Container className="py-5">
           <nav className="flex flex-col">
             {localizedNavigationItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="border-b border-white/10 py-4 text-base font-medium text-slate-200 last:border-none"
@@ -110,7 +111,7 @@ export function Header() {
                 }}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
 
             <div className="pt-4">

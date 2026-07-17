@@ -4,6 +4,7 @@ import Script from "next/script";
 
 import { I18nProvider } from "@/i18n/I18nProvider";
 import { SpotifyPlayer } from "@/components/ui/SpotifyPlayer";
+import { siteUrl } from "@/data/seoPages";
 
 import "./globals.css";
 
@@ -18,12 +19,14 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Norway History, Culture and Tourism | School Portfolio",
-    template: "%s | Norway School Portfolio",
+    default:
+      "Norway: History, Culture, Vikings, Fjords and Tourism | Student Portfolio",
+    template: "%s | Norway Student Portfolio",
   },
   description:
-    "Explore a student-made English portfolio about Norway, with a compiled overview of Norwegian history, culture, geography, football, tourism, language and society.",
+    "Explore a student-made English portfolio about Norway with history, culture, Vikings, fjords, tourism, football, language, geography and society.",
   keywords: [
     "Norway history",
     "Norwegian culture",
@@ -41,10 +44,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Norway History, Culture and Tourism | School Portfolio",
+    url: siteUrl,
+    title:
+      "Norway: History, Culture, Vikings, Fjords and Tourism | Student Portfolio",
     description:
-      "A compiled educational guide to Norway, covering history, culture, geography, football, tourism, language and society.",
-    siteName: "Norway School Portfolio",
+      "A compiled educational guide to Norway, covering history, culture, Vikings, fjords, geography, football, tourism, language and society.",
+    siteName: "Norway Student Portfolio",
     images: [
       {
         url: "/images/cover/hero-norway.webp",
@@ -56,14 +61,29 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Norway History, Culture and Tourism | School Portfolio",
+    title:
+      "Norway: History, Culture, Vikings, Fjords and Tourism | Student Portfolio",
     description:
-      "A compiled educational guide to Norway with history, culture, geography, football, tourism, language and society.",
+      "A compiled educational guide to Norway with history, culture, Vikings, fjords, geography, football, tourism, language and society.",
     images: ["/images/cover/hero-norway.webp"],
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      "pt-BR": "/pt-br/trabalho-escolar-sobre-a-noruega",
+    },
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
     shortcut: "/favicon.ico",

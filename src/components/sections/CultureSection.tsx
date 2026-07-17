@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Drum, Music2, Shirt, Soup, Sparkles } from "lucide-react";
 
 import { cultureSection as cultureSectionData } from "@/data/culture";
@@ -18,9 +19,15 @@ const itemIcons = {
 };
 
 export function CultureSection() {
-  const { translate } = useI18n();
+  const { locale, translate } = useI18n();
   const cultureSection = translate(cultureSectionData);
   const featuredItem = cultureSection.items.find((item) => item.featured);
+  const guideHref =
+    locale === "pt-BR" ? "/pt-br/cultura-norueguesa" : "/norway-culture";
+  const guideLabel =
+    locale === "pt-BR"
+      ? "Ler o guia completo de cultura"
+      : "Read the full culture guide";
 
   const secondaryItems = cultureSection.items.filter((item) => !item.featured);
 
@@ -36,6 +43,13 @@ export function CultureSection() {
           description={cultureSection.description}
           className="[&_h2]:text-white [&_p:last-child]:text-slate-300"
         />
+
+        <Link
+          href={guideHref}
+          className="mt-7 inline-flex text-sm font-semibold text-red-400 transition hover:text-red-300"
+        >
+          {guideLabel}
+        </Link>
 
         {featuredItem && (
           <Reveal variant="fade-up">

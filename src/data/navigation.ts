@@ -3,34 +3,34 @@ import type { NavigationItem } from "@/types/navigation";
 export const navigationItems: NavigationItem[] = [
   {
     label: "Home",
-    href: "#home",
+    href: "/#home",
   },
   {
     label: "Norway",
-    href: "#norway",
+    href: "/#norway",
   },
   {
     label: "Culture",
-    href: "#culture",
+    href: "/#culture",
   },
   {
     label: "History",
-    href: "#history",
+    href: "/#history",
   },
   {
     label: "Football",
-    href: "#football",
+    href: "/#football",
   },
   {
     label: "Language & Society",
-    href: "#language-society",
+    href: "/#language-society",
   },
   {
     label: "Tourism",
-    href: "#tourism",
+    href: "/#tourism",
   },
   {
     label: "Gallery",
-    href: "#gallery",
+    href: "/#gallery",
   },
 ];

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   Compass,
   Landmark,
@@ -57,8 +58,14 @@ const cityHighlights = [
 ];
 
 export function TourismSection() {
-  const { t, translate } = useI18n();
+  const { locale, t, translate } = useI18n();
   const tourismSection = translate(tourismSectionData);
+  const guideHref =
+    locale === "pt-BR" ? "/pt-br/turismo-na-noruega" : "/norway-tourism";
+  const guideLabel =
+    locale === "pt-BR"
+      ? "Ler o guia completo de turismo"
+      : "Read the full tourism guide";
 
   return (
     <section
@@ -72,6 +79,13 @@ export function TourismSection() {
           description={tourismSection.description}
           className="[&_h2]:text-white [&_p:last-child]:text-slate-300"
         />
+
+        <Link
+          href={guideHref}
+          className="mt-7 inline-flex text-sm font-semibold text-red-400 transition hover:text-red-300"
+        >
+          {guideLabel}
+        </Link>
 
         {/* Featured destination */}
         <Reveal variant="fade-up">

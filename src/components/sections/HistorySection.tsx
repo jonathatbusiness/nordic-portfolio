@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Crown, Landmark, ScrollText, Shield } from "lucide-react";
 import { ReferencePopover } from "@/components/ui/ReferencePopover";
 import { historySection as historySectionData } from "@/data/history";
@@ -11,8 +12,14 @@ import { Timeline } from "@/components/ui/Timeline";
 import { useI18n } from "@/i18n/I18nProvider";
 
 export function HistorySection() {
-  const { t, translate } = useI18n();
+  const { locale, t, translate } = useI18n();
   const historySection = translate(historySectionData);
+  const guideHref =
+    locale === "pt-BR" ? "/pt-br/historia-da-noruega" : "/norway-history";
+  const guideLabel =
+    locale === "pt-BR"
+      ? "Ler o guia completo de história"
+      : "Read the full history guide";
 
   return (
     <section
@@ -25,6 +32,13 @@ export function HistorySection() {
           title={historySection.title}
           description={historySection.description}
         />
+
+        <Link
+          href={guideHref}
+          className="mt-7 inline-flex text-sm font-semibold text-red-700 transition hover:text-red-600"
+        >
+          {guideLabel}
+        </Link>
 
         <Reveal variant="fade-up">
           <article className="mt-14 grid overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl lg:grid-cols-[1.05fr_0.95fr]">

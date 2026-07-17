@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, Images } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useI18n } from "@/i18n/I18nProvider";
@@ -59,33 +60,33 @@ export function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#norway"
+            <Link
+              href="/#norway"
               onClick={() =>
                 trackEvent("hero_cta_click", {
                   label: "Explore the Portfolio",
-                  href: "#norway",
+                  href: "/#norway",
                 })
               }
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-red-700 px-6 font-semibold transition hover:bg-red-600"
             >
               {t("Explore the Portfolio")}
               <ArrowDown size={18} />
-            </a>
+            </Link>
 
-            <a
-              href="#gallery"
+            <Link
+              href="/#gallery"
               onClick={() =>
                 trackEvent("hero_cta_click", {
                   label: "View Gallery",
-                  href: "#gallery",
+                  href: "/#gallery",
                 })
               }
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 font-semibold backdrop-blur-sm transition hover:bg-white/20"
             >
               <Images size={18} />
               {t("View Gallery")}
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

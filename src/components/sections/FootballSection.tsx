@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   Award,
   CircleDot,
@@ -33,8 +34,14 @@ const statIcons = {
 } satisfies Record<FootballStat["icon"], typeof Shirt>;
 
 export function FootballSection() {
-  const { t, translate } = useI18n();
+  const { locale, t, translate } = useI18n();
   const footballSection = translate(footballSectionData);
+  const guideHref =
+    locale === "pt-BR" ? "/pt-br/futebol-da-noruega" : "/norway-football";
+  const guideLabel =
+    locale === "pt-BR"
+      ? "Ler o guia completo de futebol"
+      : "Read the full football guide";
 
   return (
     <section
@@ -48,6 +55,13 @@ export function FootballSection() {
           description={footballSection.description}
           className="[&_h2]:text-white [&_p:last-child]:text-slate-300"
         />
+
+        <Link
+          href={guideHref}
+          className="mt-7 inline-flex text-sm font-semibold text-red-400 transition hover:text-red-300"
+        >
+          {guideLabel}
+        </Link>
 
         {/* Featured player */}
         <Reveal variant="fade-up">

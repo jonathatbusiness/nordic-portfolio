@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://norwayproject-26.vercel.app/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/trabalho-escolar-sobre-a-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/norway-history</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-history" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/historia-da-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/norway-culture</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-culture" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/cultura-norueguesa" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/norway-tourism</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-tourism" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/turismo-na-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/northern-lights-norway</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/northern-lights-norway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/aurora-boreal-na-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/norway-football</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-football" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/futebol-da-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/norway-facts-for-students</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-facts-for-students" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/trabalho-escolar-sobre-a-noruega" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/historia-da-noruega</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/historia-da-noruega" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-history" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/cultura-norueguesa</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/cultura-norueguesa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-culture" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/turismo-na-noruega</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/turismo-na-noruega" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-tourism" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/aurora-boreal-na-noruega</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/aurora-boreal-na-noruega" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/northern-lights-norway" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/futebol-da-noruega</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/futebol-da-noruega" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-football" />
+  </url>
+  <url>
+    <loc>https://norwayproject-26.vercel.app/pt-br/trabalho-escolar-sobre-a-noruega</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://norwayproject-26.vercel.app/pt-br/trabalho-escolar-sobre-a-noruega" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://norwayproject-26.vercel.app/norway-facts-for-students" />
+  </url>
+</urlset>
